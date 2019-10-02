@@ -1,7 +1,7 @@
 import { injectable, inject } from "inversify";
 import URI from "@theia/core/lib/common/uri";
 import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry } from "@theia/core/lib/common";
-import { open, KeybindingContribution, KeybindingRegistry, FrontendApplicationContribution, QuickOpenService, Endpoint, QuickOpenItem, QuickOpenMode, StatusBar, QuickOpenContribution, QuickOpenHandlerRegistry, OpenerService } from "@theia/core/lib/browser";
+import { open, KeybindingContribution, KeybindingRegistry, FrontendApplicationContribution, QuickOpenService, Endpoint, QuickOpenItem, QuickOpenMode, CommonMenus, StatusBar, StatusBarAlignment, QuickOpenContribution, QuickOpenHandlerRegistry, OpenerService } from "@theia/core/lib/browser";
 import { WorkspaceService } from "@theia/workspace/lib/browser";
 
 @injectable()
@@ -27,18 +27,44 @@ export class TheiaTrainingFrontendContribution implements CommandContribution, M
         // TODO: Add `Open Quick File...` command
         // The command should call `this.open` for the first workspace root, i.e. `this.workspaceService.tryGetRoots()[0]`
         // if there is no a workspace root then the command should not be visible and enabled
+        registry.registerCommand({
+            id: 'training.quickFile.open',
+            label: 'Open Quick File'
+        }, {
+            execute: () => {
+                const root = this.workspaceService.tryGetRoots()[0];
+                if (root) {
+                    this.open(root.uri);
+                }
+            },
+            isEnabled: () => this.workspaceService.tryGetRoots().length > 0,
+            isVisible: () => this.workspaceService.tryGetRoots().length > 0
+        });
     }
 
     registerKeybindings(registry: KeybindingRegistry): void {
         // TODO: Add `ctrlcmd+k f` keybinding for `Open Quick File...` command
+        registry.registerKeybinding({
+            command: 'training.quickFile.open',
+            keybinding: 'ctrlcmd+k f'
+        });
     }
 
     registerMenus(registry: MenuModelRegistry): void {
         // TODO: Add `Open Quick File...` menu item in `CommonMenus.FILE_OPEN` menu path
+        registry.registerMenuAction(CommonMenus.FILE_OPEN, {
+            commandId: 'training.quickFile.open'
+        });
     }
 
     onStart(): void {
         // TODO: Add `Open Quick File...` status bar item with file icon aligned to a left
+        this.statusBar.setElement('training.quickFile', {
+            text: '$(file)',
+            alignment: StatusBarAlignment.LEFT,
+            priority: 1,
+            command: 'training.quickFile.open'
+        });
     }
 
     registerQuickOpenHandlers(handlers: QuickOpenHandlerRegistry): void {
