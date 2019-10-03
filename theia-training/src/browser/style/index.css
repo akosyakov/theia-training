@@ -1,7 +1,12 @@
-/*
- * A list of predefined variables:
- * https://github.com/eclipse-theia/theia/blob/74d3790981c96ab664df300c9d05fcb31d3a94f8/packages/core/src/browser/style/variables-bright.useable.css#L79
- */
-.theia-file-list > div {
-    padding: calc(var(--theia-ui-padding)/2) var(--theia-ui-padding);
+/* TODO: set background-image to url(gitpod-logo.svg) */
+.theia-icon {
+    background-image: url(gitpod-logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 3.5px 0px;
+    min-width: var(--theia-private-sidebar-tab-width);
+    max-width: var(--theia-private-sidebar-tab-width);
+    height: calc(var(--theia-private-sidebar-tab-width)/2);
+    background-position-x: 14.0px;
 }

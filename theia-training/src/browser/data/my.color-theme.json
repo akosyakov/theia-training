@@ -1,0 +1,33 @@
+{
+	"tokenColors": [
+		{
+			"settings": {
+				"foreground": "#434f54"
+			}
+		},
+		{
+			"name": "Comments",
+			"scope": "comment",
+			"settings": {
+				"foreground": "#223355"
+			}
+		},
+		{
+			"name": "strings",
+			"scope": [
+				"string.quoted.single",
+                "string.quoted.double",
+                "string.quoted.triple"
+			],
+			"settings": {
+				"foreground": "#22aa44"
+			}
+		}
+	],
+	"colors": {
+		"editor.background": "#000C18",
+		"editor.foreground": "#434f54",
+		"editorCursor.foreground": "#DDBB88"
+	},
+	"name": "My Dark"
+}
