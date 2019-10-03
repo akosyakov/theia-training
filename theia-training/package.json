@@ -23,7 +23,8 @@
   },
   "theiaExtensions": [
     {
-      "frontend": "lib/browser/theia-training-frontend-module"
+      "frontend": "lib/browser/theia-training-frontend-module",
+      "backend": "lib/node/theia-training-backend-module"
     }
   ]
 }

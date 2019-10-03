@@ -1,38 +1,41 @@
 import * as React from 'react';
 import { injectable, inject } from "inversify";
-import { open, ReactWidget, LabelProvider, Message, OpenerService } from "@theia/core/lib/browser";
-import { FileSystem, FileStat } from "@theia/filesystem/lib/common";
+import { open, ReactWidget, LabelProvider, Message, OpenerService, StatefulWidget } from "@theia/core/lib/browser";
 import URI from '@theia/core/lib/common/uri';
+import { FileListService, Files } from '../common/file-list-protocol';
+import { JsonRpcProxy } from '@theia/core';
 
 export class FileComponent extends React.Component<FileComponent.Props> {
 
     render(): React.ReactNode {
-        return <div onClick={this.openFile}>{this.props.labelProvider.getName(this.props.file)}</div>;
+        return <div onClick={this.openFile}>{this.props.labelProvider.getName(new URI(this.props.uri))}</div>;
     }
 
     protected readonly openFile = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
 
-        this.props.onOpenFile(this.props.file.uri);
+        this.props.onOpenFile(this.props.uri);
     }
 
 }
 export namespace FileComponent {
     export interface Props {
-        file: FileStat;
+        uri: string;
         labelProvider: LabelProvider;
         onOpenFile: (uri: string) => void
     }
 }
 
 @injectable()
-export class FileListWidget extends ReactWidget {
+export class FileListWidget extends ReactWidget implements StatefulWidget {
 
     static ID = 'fileList';
 
-    @inject(FileSystem)
-    protected readonly fileSystem: FileSystem;
+    // BONUS: render offline when FileListService is disconnected
+    // use `JsonRpcProxy<FileListService>` as a type to detect when a connection is closed or opened
+    @inject(FileListService)
+    protected readonly fileListService: JsonRpcProxy<FileListService>;
 
     @inject(LabelProvider)
     protected readonly labelProvider: LabelProvider;
@@ -56,13 +59,13 @@ export class FileListWidget extends ReactWidget {
     }
 
     protected path: string[] = [];
-    protected current: FileStat | undefined;
+    protected current: Files & { uri: string } | undefined;
 
     protected render(): React.ReactNode {
         const children = this.current && this.current.children;
         return <React.Fragment>
             {this.path.length > 0 && <div onClick={this.openParent}>..</div>}
-            {children && children.map((file, index) => <FileComponent key={index} file={file} labelProvider={this.labelProvider} onOpenFile={this.openChild} />)}
+            {children && children.map((uri, index) => <FileComponent key={index} uri={uri} labelProvider={this.labelProvider} onOpenFile={this.openChild} />)}
         </React.Fragment>
     }
 
@@ -78,30 +81,39 @@ export class FileListWidget extends ReactWidget {
         this.doOpen(uri);
     }
 
-    get file(): FileStat | undefined {
-        return this.current;
+    get file(): string | undefined {
+        return this.current && this.current.uri;
     }
-    set file(stat: FileStat | undefined) {
+    set file(uri: string | undefined) {
         this.path.length = 0;
         this.current = undefined;
-        if (stat) {
-            this.doOpen(stat.uri)
+        if (uri) {
+            this.doOpen(uri)
         } else {
             this.update();
         }
     }
 
     protected readonly doOpen = async (uri: string): Promise<void> => {
-        const file = await this.fileSystem.getFileStat(uri);
-        if (!file) {
-            return;
-        }
-        if (file.isDirectory) {
-            this.current = file;
+        const files = await this.fileListService.getFiles(uri);
+        if (files.isDirectory) {
+            this.current = Object.assign(files, { uri });
             this.update();
         } else {
-            open(this.openerService, new URI(file.uri));
+            open(this.openerService, new URI(uri));
         }
+    }
+
+    storeState(): object {
+        return {
+            path: this.path,
+            current: this.current
+        }
+    }
+
+    restoreState(oldState: object): void {
+        Object.assign(this, oldState);
+        this.update();
     }
 
 }
