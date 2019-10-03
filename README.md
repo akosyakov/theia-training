@@ -1,10 +1,10 @@
-- Add `Open Quick File...` command in `TheiaTrainingFrontendContribution.registerCommand`.
-The command should call `this.open` for the first workspace root, i.e. `this.workspaceService.tryGetRoots()[0]`.
-Ff there is no a workspace root then the command should not be visible and enabled.
-- Add `ctrlcmd+k f` keybinding for `Open Quick File...` command in `TheiaTrainingFrontendContribution.registerKeybindings`.
-- Add `Open Quick File...` menu item in `CommonMenus.FILE_OPEN` menu path in `TheiaTrainingFrontendContribution.registerMenus`
-- Add `Open Quick File...` status bar item with file icon aligned to a left in `TheiaTrainingFrontendContribution.onStart`.
+- Implement rendering of a file list in `FileListWidget.render`:
+  - if a path is not empty then first `..` div element should be rendered which triggers `openParent` on click
+  - if current stat has children then for each child `FileComponent` should be rendered which triggers `openChild` on click
 
 ### Bonus
 
-- Reimplement `TheiaTrainingFrontendContribution` as `QuickOpenHandler`, see `TheiaTrainingFrontendContribution.registerQuickOpenHandlers`.
+- Implement `StatefulWidget` by `FileListWidget` to preserve the path and current state on the page reload.
+- Implement rendering of a file icon in `FileComponent.render`
+  - Use `LabelProvider.getIcon` to get an icon
+  - Since `getIcon` is async the code should be refactored to first compute an icon and then trigger rerendering
