@@ -1,6 +1,5 @@
 /* TODO: set background-image to url(gitpod-logo.svg) */
 .theia-icon {
-    background-image: url(gitpod-logo.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
