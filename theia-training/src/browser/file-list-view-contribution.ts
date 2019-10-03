@@ -27,7 +27,7 @@ export class FileListViewContribution extends AbstractViewContribution<FileListW
         if (!widget.file) {
             const roots = await this.workspaceService.roots;
             if (roots.length) {
-                widget.file = roots[0];
+                widget.file = roots[0].uri;
             }
         }
         return widget;
