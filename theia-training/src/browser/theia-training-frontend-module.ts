@@ -1,12 +1,16 @@
+import '../../src/browser/style/index.css';
+
 import { ContainerModule } from 'inversify';
-import { TheiaTrainingFrontendContribution } from './theia-training-frontend-contribution';
-import { CommandContribution, MenuContribution } from '@theia/core/lib/common';
-import { KeybindingContribution, FrontendApplicationContribution } from '@theia/core/lib/browser';
+import { FileListViewContribution } from './file-list-view-contribution';
+import { bindViewContribution, WidgetFactory, FrontendApplicationContribution } from '@theia/core/lib/browser';
+import { FileListWidget } from './file-list-widget';
 
 export default new ContainerModule(bind => {
-    bind(TheiaTrainingFrontendContribution).toSelf().inSingletonScope();
-    bind(CommandContribution).toService(TheiaTrainingFrontendContribution);
-    bind(MenuContribution).toService(TheiaTrainingFrontendContribution);
-    bind(KeybindingContribution).toService(TheiaTrainingFrontendContribution);
-    bind(FrontendApplicationContribution).toService(TheiaTrainingFrontendContribution);
+    bind(FileListWidget).toSelf();
+    bind(WidgetFactory).toDynamicValue(context => ({
+        id: FileListWidget.ID,
+        createWidget: () => context.container.get(FileListWidget)
+    }));
+    bindViewContribution(bind, FileListViewContribution);
+    bind(FrontendApplicationContribution).toService(FileListViewContribution);
 });
