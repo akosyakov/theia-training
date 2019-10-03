@@ -12,7 +12,7 @@ tasks:
     openMode: split-right
   - command: |
       gp sync-await init
-      yarn --cwd browser-app start ../workspace
+      yarn --cwd browser-app start ..
     name: Run browser-app
     openMode: tab-after
 ports:
