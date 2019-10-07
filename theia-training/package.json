@@ -9,11 +9,13 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "latest"
+    "@theia/core": "latest",
+    "react-jsonschema-form": "^1.0.3"
   },
   "devDependencies": {
     "rimraf": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "@types/react-jsonschema-form": "^1.0.5"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build",
@@ -23,8 +25,7 @@
   },
   "theiaExtensions": [
     {
-      "frontend": "lib/browser/theia-training-frontend-module",
-      "backend": "lib/node/theia-training-backend-module"
+      "frontend": "lib/browser/theia-training-frontend-module"
     }
   ]
 }
