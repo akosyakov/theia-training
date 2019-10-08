@@ -6,20 +6,23 @@
   "version": "0.0.0",
   "files": [
     "lib",
-    "src"
+    "src",
+    "build"
   ],
   "dependencies": {
     "@theia/core": "latest"
   },
   "devDependencies": {
     "rimraf": "latest",
+    "copyfiles": "latest",
     "typescript": "latest"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn run build",
     "clean": "rimraf lib",
-    "build": "tsc",
-    "watch": "tsc -w"
+    "build": "tsc && yarn run copy-ls",
+    "watch": "tsc -w",
+    "copy-ls": "rimraf build && copyfiles -f ../lsp4j-server/build/libs/my-language-server.jar build"
   },
   "theiaExtensions": [
     {

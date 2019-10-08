@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "prepare": "lerna run prepare",
+    "prepare": "cd lsp4j-server && ./gradlew shadowJar && cd .. && lerna run prepare",
     "rebuild:browser": "theia rebuild:browser",
     "rebuild:electron": "theia rebuild:electron"
   },

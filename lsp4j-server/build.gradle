@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.1.0"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.eclipse.lsp4j:org.eclipse.lsp4j:0.8.0'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+shadowJar {
+    baseName = 'my-language-server'
+    classifier = null
+    version = null
+    manifest {
+        attributes 'Main-Class': 'lsp4j.server.MyLanguageServerLauncher'
+    }
+}

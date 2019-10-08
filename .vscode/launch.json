@@ -55,6 +55,15 @@
             "smartStep": true,
             "internalConsoleOptions": "openOnSessionStart",
             "outputCapture": "std"
+        },
+        {
+            "type": "java",
+            "name": "Debug MyLanguageServerTest",
+            "request": "launch",
+            "mainClass": "org.junit.runner.JUnitCore",
+            "args": "lsp4j.server.MyLanguageServerTest",
+            "projectName": "lsp4j-server",
+            "console": "internalConsole"
         }
     ]
 }
