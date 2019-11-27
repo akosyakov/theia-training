@@ -58,12 +58,11 @@
         },
         {
             "type": "java",
-            "name": "Debug MyLanguageServerTest",
-            "request": "launch",
-            "mainClass": "org.junit.runner.JUnitCore",
-            "args": "lsp4j.server.MyLanguageServerTest",
-            "projectName": "lsp4j-server",
-            "console": "internalConsole"
+            "name": "Attach File Service",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8000,
+            "timeout": 1000000
         }
     ]
 }

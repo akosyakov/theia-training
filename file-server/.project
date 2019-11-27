@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>lsp4j-server</name>
-	<comment>Project lsp4j-server created by Buildship.</comment>
+	<name>file-server</name>
+	<comment>Project file-server created by Buildship.</comment>
 	<projects>
 	</projects>
 	<buildSpec>

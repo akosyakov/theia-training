@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "prepare": "cd lsp4j-server && ./gradlew shadowJar && cd .. && lerna run prepare",
+    "prepare": "cd file-server && ./gradlew shadowJar && cd .. && lerna run prepare",
     "rebuild:browser": "theia rebuild:browser",
     "rebuild:electron": "theia rebuild:electron"
   },
@@ -9,6 +9,6 @@
     "lerna": "2.4.0"
   },
   "workspaces": [
-    "theia-training", "browser-app", "electron-app"
+    "file-server", "theia-training", "browser-app", "electron-app"
   ]
 }

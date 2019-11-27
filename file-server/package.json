@@ -1,0 +1,9 @@
+{
+  "name": "file-server",
+  "version": "0.0.0",
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "./gradlew clean",
+    "build": "./gradlew shadowJar"
+  }
+}
