@@ -14,8 +14,6 @@
     "@theia/languages": "latest",
     "@theia/markers": "latest",
     "@theia/monaco": "latest",
-    "@theia/textmate-grammars": "latest",
-    "@theia/typescript": "latest",
     "@theia/messages": "latest",
     "theia-training": "0.0.0"
   },
@@ -24,7 +22,7 @@
   },
   "scripts": {
     "prepare": "theia build --mode development",
-    "start": "theia start",
+    "start": "theia start --plugins=local-dir:../plugins",
     "watch": "theia build --watch --mode development"
   },
   "theia": {
