@@ -15,6 +15,8 @@ npm install -g yo generator-theia-extension
 yo theia-extension theia-training
 ```
 
+Select `Hello World` extension type.
+
 ## Task 2: Build the application
 
 Download dependencies and build all packages:
@@ -26,7 +28,7 @@ yarn
 
 ```
 cd browser-app
-yarn start --hostname 0.0.0.0 ../workspace
+yarn start --hostname 0.0.0.0 ..
 ```
 
 Click `Open Browser` in the notification center.
