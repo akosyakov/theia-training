@@ -17,6 +17,10 @@ tasks:
     openMode: tab-after
 ports:
   - port: 3000
+  - port: 5900
+    onOpen: ignore
+  - port: 6080
+    onOpen: ignore
 github:
   prebuilds:
     branches: true
