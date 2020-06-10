@@ -14,8 +14,6 @@
     "@theia/languages": "latest",
     "@theia/markers": "latest",
     "@theia/monaco": "latest",
-    "@theia/textmate-grammars": "latest",
-    "@theia/typescript": "latest",
     "@theia/messages": "latest",
     "theia-training": "0.0.0"
   },
