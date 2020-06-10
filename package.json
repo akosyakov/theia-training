@@ -1,14 +1,21 @@
 {
-  "private": true,
-  "scripts": {
-    "prepare": "lerna run prepare",
-    "rebuild:browser": "theia rebuild:browser",
-    "rebuild:electron": "theia rebuild:electron"
-  },
-  "devDependencies": {
-    "lerna": "2.4.0"
-  },
-  "workspaces": [
-    "theia-training", "browser-app", "electron-app"
-  ]
+    "private": true,
+    "scripts": {
+        "prepare": "lerna run prepare && yarn download:plugins",
+        "rebuild:browser": "theia rebuild:browser",
+        "rebuild:electron": "theia rebuild:electron",
+        "download:plugins": "theia download:plugins"
+    },
+    "devDependencies": {
+        "lerna": "2.4.0"
+    },
+    "workspaces": [
+        "theia-training",
+        "browser-app",
+        "electron-app"
+    ],
+    "theiaPluginsDir": "plugins",
+    "theiaPlugins": {
+        "vscode-builtin-json": "https://open-vsx.org/api/vscode/json/1.44.2/file/vscode.json-1.44.2.vsix"
+    }
 }

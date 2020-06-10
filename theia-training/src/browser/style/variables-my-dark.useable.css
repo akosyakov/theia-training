@@ -1,8 +1,0 @@
-/*
- * See all predefined variables:
- * https://github.com/eclipse-theia/theia/blob/74d3790981c96ab664df300c9d05fcb31d3a94f8/packages/core/src/browser/style/variables-bright.useable.css#L79
- */
-:root {
-    /* TODO: Set theia-ui-font-color1 variable as #6688CC */
-    --theia-ui-font-color1: #6688CC;
-}

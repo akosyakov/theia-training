@@ -9,7 +9,9 @@
     "src"
   ],
   "dependencies": {
-    "@theia/core": "latest"
+    "@theia/core": "latest",
+    "@theia/json": "latest",
+    "@theia/plugin-ext-vscode": "latest"
   },
   "devDependencies": {
     "rimraf": "latest",
