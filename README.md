@@ -18,7 +18,7 @@ To start with the exercises you only need a modern browser. For the best experie
 You can open any branch on GitHub by prefixing its URL with `gitpod.io#`.
 For example, to open Gitpod for the exercise 0:
 - go to the exercise's branch - https://github.com/akosyakov/theia-training/tree/exercise-0
-- prefix it with `gitpod.io#` - [https://gitpod.io#https://github.com/akosyakov/theia-training/tree/exercise-0](https://gitpod.io/#https://github.com/TypeFox/theia-workshop/tree/exercise-0)
+- prefix it with `gitpod.io#` - [https://gitpod.io#https://github.com/akosyakov/theia-training/tree/exercise-0](https://gitpod.io/#https://github.com/akosyakov/theia-training/tree/exercise-0)
 
 ### [Exercise 0: Build Theia Application](https://github.com/akosyakov/theia-training/blob/exercise-0/EXERCISE.md#exercise-0-build-theia-application)
 
