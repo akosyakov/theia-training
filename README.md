@@ -1,6 +1,6 @@
 # Exercise 2: Implement File List View
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/akosyakov/theia-training/tree/exercise-2)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/Phil1iu/theia-training/tree/exercise-2)
 
 In this exercise, you learn:
 - what is a widget and its lifecycle hooks;
