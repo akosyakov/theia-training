@@ -34,6 +34,7 @@ export class FileListViewContribution extends AbstractViewContribution<FileListW
     }
 
     async onStart(): Promise<void> {
+        // initializeLayout/onStart
         await this.openView({
             reveal: true
         });

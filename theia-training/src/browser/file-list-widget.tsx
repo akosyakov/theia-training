@@ -51,7 +51,12 @@ export class FileListWidget extends ReactWidget {
         When a user clicks on a child node the corresponding file should be opened.
         You can do it by calling `FileListWidget.openChild`.
          */
-        return null;
+        //return null;
+        const children = this.current && this.current.children;
+        return <React.Fragment>
+            {this.path.length > 0 && <div onClick={this.openParent}>..</div>}
+            {children && children.map((file, index) => <FileComponent key={index} file={file} labelProvider={this.labelProvider} onOpenFile={this.openChild} />)}
+        </React.Fragment>
     }
 
     protected readonly openParent = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -100,7 +105,7 @@ export class FileComponent extends React.Component<FileComponent.Props> {
         // BONUS: render file icon
         // `LabelProvider.getIcon` provides an icon for the given object
         // but it is async, so the code should be refactored to first compute an icon and then trigger rerendering
-        return <div onClick={this.openFile}>{this.props.labelProvider.getName(this.props.file)}</div>;
+    return <div onClick={this.openFile}>{this.props.labelProvider.getName(this.props.file)}</div>;
     }
 
     protected readonly openFile = (e: React.MouseEvent<HTMLDivElement>) => {
